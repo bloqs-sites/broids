@@ -10,7 +10,7 @@ import java.util.List;
 import jvmdbhelper.DBProxy;
 
 public class Proxy implements DBProxy {
-SQLiteDatabase real;
+final SQLiteDatabase real;
 
 public Proxy(SQLiteDatabase real) {
 	this.real = real;

@@ -8,7 +8,7 @@ import pt.epcc.alunos.al220007.bloqs.models.ItemManager
 
 object Database : DB() {
     private const val NAME = "bloqs"
-    const val VERSION = 1
+    private const val VERSION = 1u
 
     override fun genMigrations(): Migrations {
         val itemManager = ItemManager()
@@ -28,5 +28,9 @@ object Database : DB() {
 
     override fun name(): String {
         return NAME
+    }
+
+    override fun version(): UInt {
+        return VERSION
     }
 }
