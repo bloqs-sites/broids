@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.bloqs.storage;
+package pt.epcc.alunos.al220007.bloqs.db;
 
 import android.database.sqlite.SQLiteDatabase;
 

@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.bloqs.storage
+package pt.epcc.alunos.al220007.bloqs.db
 
 import jvmdbhelper.DBHelper
 import jvmdbhelper.db_defenitions.DB
@@ -10,19 +10,19 @@ object Database : DB() {
     private const val NAME = "bloqs"
     private const val VERSION = 1u
 
-    override fun genMigrations(): Migrations {
+    override fun migrations(): Migrations {
         val itemManager = ItemManager()
 
         return mapOf(
-                1u to object : Migration {
-                    override fun downgrade(dbh: DBHelper) {
-                        dbh.deleteTable(itemManager)
-                    }
-
-                    override fun upgrade(dbh: DBHelper) {
-                        dbh.createTable(itemManager)
-                    }
+            1u to object : Migration {
+                override fun downgrade(dbh: DBHelper) {
+                    dbh.deleteTable(itemManager)
                 }
+
+                override fun upgrade(dbh: DBHelper) {
+                    dbh.createTable(itemManager)
+                }
+            }
         )
     }
 

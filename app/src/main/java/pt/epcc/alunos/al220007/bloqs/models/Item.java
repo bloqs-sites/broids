@@ -11,10 +11,10 @@ import jvmdbhelper.model.Model;
 
 public class Item implements Model {
 
-private long id;
 public String title;
 public URI uri;
 public boolean state;
+private long id;
 
 @Override
 public void fromMap(@NonNull Map<String, ?> map) {
