@@ -24,7 +24,11 @@ class Helper(context: Context?, name: String?, factory: CursorFactory?, version:
             ?: throw Exception()
     }
 
-    private fun helper(db: SQLiteDatabase): DBHelper {
-        return DBHelper(Proxy(db))
+    fun proxy(db: SQLiteDatabase): Proxy {
+        return Proxy(db)
+    }
+
+    fun helper(db: SQLiteDatabase): DBHelper {
+        return DBHelper(this.proxy(db))
     }
 }

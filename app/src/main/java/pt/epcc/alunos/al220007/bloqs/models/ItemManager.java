@@ -9,8 +9,8 @@ import jvmdbhelper.model.TableManager;
 
 public class ItemManager extends TableManager<Item> {
 public static final String NAME = "items";
-public static final String COL_ID = "id";
-public static final String COL_TITLE = "id";
+public static final String COL_ID = "_id";
+public static final String COL_TITLE = "title";
 public static final String COL_URI = "uri";
 public static final String COL_STATE = "state";
 public static final String COL_CREATION_DATE = "creation_date";

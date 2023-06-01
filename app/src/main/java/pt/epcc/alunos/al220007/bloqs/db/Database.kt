@@ -5,6 +5,7 @@ import jvmdbhelper.db_defenitions.DB
 import jvmdbhelper.db_defenitions.Migration
 import jvmdbhelper.db_defenitions.Migrations
 import pt.epcc.alunos.al220007.bloqs.models.ItemManager
+import pt.epcc.alunos.al220007.bloqs.models.Tag
 
 object Database : DB() {
     private const val NAME = "bloqs"
@@ -16,11 +17,11 @@ object Database : DB() {
         return mapOf(
             1u to object : Migration {
                 override fun downgrade(dbh: DBHelper) {
-                    dbh.deleteTable(itemManager)
+                    dbh.deleteTable(itemManager, Tag)
                 }
 
                 override fun upgrade(dbh: DBHelper) {
-                    dbh.createTable(itemManager)
+                    dbh.createTable(itemManager, Tag)
                 }
             }
         )

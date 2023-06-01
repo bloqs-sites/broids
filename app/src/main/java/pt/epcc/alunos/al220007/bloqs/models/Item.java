@@ -45,4 +45,8 @@ public Map<String, Object> getMutable() {
 	mut.put(ItemManager.COL_STATE, this.state);
 	return mut;
 }
+
+public long getId() {
+	return id;
+}
 }
