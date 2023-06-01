@@ -12,7 +12,7 @@ import pt.epcc.alunos.al220007.bloqs.list.Adapter;
 import pt.epcc.alunos.al220007.bloqs.list.ViewHolder;
 
 public class TagAdapter extends Adapter<Tag, TagAdapter.TagViewHolder> {
-public static final int LAYOUT = R.layout.model_card;
+public static final int LAYOUT = R.layout.item_card;
 
 public TagAdapter(Context ctx, List<Tag> list) {
 	super(ctx, list);

@@ -4,16 +4,22 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
-	tools:context=".list.Activity">
+	tools:context=".models.ItemInfoActivity">
 
-<androidx.recyclerview.widget.RecyclerView
-	android:id="@+id/list"
-	android:layout_width="match_parent"
-	android:layout_height="256dp" />
-
-<Button
-	android:id="@+id/delete"
+<TextView
+	android:id="@+id/title"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:text="@string/delete" />
+	android:textSize="72sp" />
+
+<TextView
+	android:id="@+id/uri"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:textSize="36sp" />
+
+<TextView
+	android:id="@+id/state"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" />
 </LinearLayout>

@@ -23,17 +23,24 @@ public Item init() {
 
 @Override
 protected void manageTable(@NonNull Table table) {
-	table.addPK(ItemManager.COL_ID, true).addColumn(
-		new Column(ItemManager.COL_TITLE, Type.TXT).nullable(false),
-		new Column(ItemManager.COL_URI, Type.TXT).nullable(true),
-		new Column(ItemManager.COL_STATE, Type.INT).nullable(false),
-		new Column(ItemManager.COL_CREATION_DATE, Type.DATETIME).nullable(true)
-	);
+	Column title = new Column(ItemManager.COL_TITLE, Type.TXT);
+	title.setNullable(false);
+
+	Column uri = new Column(ItemManager.COL_URI, Type.TXT);
+	uri.setNullable(true);
+
+	Column state = new Column(ItemManager.COL_STATE, Type.INT);
+	state.setNullable(false);
+
+	Column creation_date = new Column(ItemManager.COL_CREATION_DATE, Type.DATETIME);
+	creation_date.setNullable(true);
+
+	table.addPK(ItemManager.COL_ID, true).addColumn(title, uri, state, creation_date);
 }
 
 @NonNull
 @Override
-public String name() {
+public String getName() {
 	return ItemManager.NAME;
 }
 }

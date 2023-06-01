@@ -4,7 +4,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,8 +29,9 @@ public void close() {
 }
 
 @Override
-public void exec(@NonNull String s, @Nullable List<?> list) {
-	this.real.execSQL(s, list == null ? new Object[]{} : list.toArray());
+public long exec(@NonNull String s, @NonNull List<?> list) {
+	this.real.execSQL(s, list.toArray());
+	return Long.MIN_VALUE;
 }
 
 @NonNull
@@ -67,11 +67,13 @@ public <T extends Model> Iterable<T> query(@NonNull String s, @NonNull List<?> l
 						break;
 					default:
 						// Not Implemented
-						assert false;
+						break;
 				}
 			}
 
-			models.add(tableManager.create(this, values));
+			T item = tableManager.init();
+			item.fromMap(values);
+			models.add(item);
 		} while (cursor.moveToNext());
 	} else {
 		return models;

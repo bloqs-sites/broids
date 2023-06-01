@@ -9,22 +9,29 @@ import jvmdbhelper.db_defenitions.DB
 
 class Helper(context: Context?, name: String?, factory: CursorFactory?, version: Int) :
     SQLiteOpenHelper(context, name, factory, version) {
-    private var db: DB? = null
+    private lateinit var db: DB
 
-    constructor(context: Context?, db: DB) : this(context, db.name(), null, db.version().toInt()) {
+    constructor(context: Context?, db: DB) : this(context, db.name, null, db.version.toInt()) {
         this.db = db
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        this.db?.create(helper(db)) ?: throw Exception()
+        this.db.create(helper(db))
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        this.db?.migrate(this.helper(db), oldVersion.toUInt(), newVersion.toUInt())
-            ?: throw Exception()
+        this.db.migrate(this.helper(db), oldVersion.toUInt(), newVersion.toUInt())
     }
 
-    fun proxy(db: SQLiteDatabase): Proxy {
+    override fun onDowngrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+        if (db == null) {
+            return
+        }
+
+        this.db.migrate(this.helper(db), oldVersion.toUInt(), newVersion.toUInt())
+    }
+
+    private fun proxy(db: SQLiteDatabase): Proxy {
         return Proxy(db)
     }
 
@@ -36,7 +43,7 @@ class Helper(context: Context?, name: String?, factory: CursorFactory?, version:
         return Proxy(this.writableDatabase)
     }
 
-    fun helper(db: SQLiteDatabase): DBHelper {
+    private fun helper(db: SQLiteDatabase): DBHelper {
         return DBHelper(this.proxy(db))
     }
 

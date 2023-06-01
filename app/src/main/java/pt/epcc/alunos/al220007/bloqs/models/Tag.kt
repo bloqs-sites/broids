@@ -12,7 +12,10 @@ class Tag : Model {
     private var id: Long = 0
 
     override fun fromMap(values: Values) {
-        this.id = values[COL_ID] as Long
+        val id = values[COL_ID]
+        if (id is Long) {
+            this.id = id
+        }
         this.name = values[COL_NAME] as String?
     }
 
@@ -30,15 +33,18 @@ class Tag : Model {
         private const val NAME = "tags"
         const val COL_ID = "_id"
         const val COL_NAME = "name"
+        override val name: String
+            get() = NAME
 
         override fun init(): Tag = Tag()
 
         override fun manageTable(table: Table) {
             table.addPK(COL_ID).addColumn(
-                Column(COL_NAME, Type.TXT).unique().nullable(false)
+                Column(COL_NAME, Type.TXT).apply {
+                    unique = true
+                    nullable = false
+                }
             )
         }
-
-        override fun name(): String = NAME
     }
 }

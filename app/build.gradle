@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.github.torres-developer:jvmdbhelper:0.5.3'
+    implementation 'com.github.torres-developer:jvmdbhelper:0.5.7'
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
