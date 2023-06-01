@@ -2,6 +2,7 @@ package pt.epcc.alunos.al220007.bloqs.models;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -37,6 +38,7 @@ public static class ItemViewHolder extends ViewHolder<Item> {
 	protected void manageItemView() {
 		Item i = this.getModel();
 		this.view.findViewById(Math.toIntExact(i.getId()));
+		Toast.makeText(this.ctx, Math.toIntExact(i.getId()), Toast.LENGTH_SHORT).show();
 	}
 }
 }

@@ -28,7 +28,23 @@ class Helper(context: Context?, name: String?, factory: CursorFactory?, version:
         return Proxy(db)
     }
 
+    fun readProxy(): Proxy {
+        return Proxy(this.readableDatabase)
+    }
+
+    fun writeProxy(): Proxy {
+        return Proxy(this.writableDatabase)
+    }
+
     fun helper(db: SQLiteDatabase): DBHelper {
         return DBHelper(this.proxy(db))
+    }
+
+    fun readHelper(): DBHelper {
+        return DBHelper(this.readProxy())
+    }
+
+    fun writeHelper(): DBHelper {
+        return DBHelper(this.writeProxy())
     }
 }

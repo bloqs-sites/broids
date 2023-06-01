@@ -1,6 +1,7 @@
 package pt.epcc.alunos.al220007.bloqs.list;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,13 +36,14 @@ protected void onCreate(Bundle savedInstanceState) {
 
 	RecyclerView recyclerView = this.findViewById(Activity.RECYCLER_VIEW);
 
-	Iterable<T> items = (Iterable<T>) this.createManager().read(db.proxy(db.getReadableDatabase()), new HashMap<>());
+	Iterable<T> items = (Iterable<T>) this.createManager().read(db.readProxy(), new HashMap<>());
 	List<T> list = new ArrayList<>();
 	for (T i :
 		items) {
 		list.add(i);
 	}
 
+	Toast.makeText(this, String.valueOf(list.size()), Toast.LENGTH_LONG).show();
 	recyclerView.setLayoutManager(this.createLayoutManager());
 	recyclerView.setAdapter(this.createAdapter(list));
 
