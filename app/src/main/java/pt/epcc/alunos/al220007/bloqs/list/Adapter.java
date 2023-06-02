@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import jvmdbhelper.model.Model;
+import pt.epcc.alunos.al220007.bloqs.models.Model;
 
 abstract public class Adapter<T extends Model, U extends ViewHolder<T>> extends RecyclerView.Adapter<U> {
 private final Context ctx;

@@ -1,36 +1,49 @@
 package pt.epcc.alunos.al220007.bloqs.list;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-import jvmdbhelper.model.Model;
 import jvmdbhelper.model.TableManager;
 import pt.epcc.alunos.al220007.bloqs.R;
+import pt.epcc.alunos.al220007.bloqs.async.HTTPGETJSON;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;
+import pt.epcc.alunos.al220007.bloqs.models.Model;
 
 abstract public class Activity<T extends Model, M extends TableManager<T>, U extends Adapter<T, ? extends ViewHolder<T>>> extends AppCompatActivity {
-public static final int LAYOUT = R.layout.activity_models_list;
-public static final int RECYCLER_VIEW = R.id.list;
+private static final int LAYOUT = R.layout.activity_models_list;
+private static final int RECYCLER_VIEW = R.id.list;
 
-public abstract @NonNull M createManager();
+private Future<String> future;
 
-public abstract @NonNull U createAdapter(List<T> list);
+protected abstract @NonNull M createManager();
 
-public abstract @NonNull RecyclerView.LayoutManager createLayoutManager();
+protected abstract @NonNull U createAdapter(List<T> list);
+
+protected abstract @NonNull URL createResource() throws MalformedURLException;
+
+protected abstract @NonNull RecyclerView.LayoutManager createLayoutManager();
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 	super.onCreate(savedInstanceState);
 	setContentView(Activity.LAYOUT);
+
+	this.pull();
 
 	Helper db = new Helper(this, Database.INSTANCE);
 
@@ -40,27 +53,6 @@ protected void onCreate(Bundle savedInstanceState) {
 		this.deleteDatabase(Database.INSTANCE.getName());
 		this.finish();
 	});
-
-//	Item apple = new Item();
-//	Map<String, Object> values = new HashMap<>();
-//	values.put(ItemManager.COL_TITLE, "Apple");
-//	values.put(ItemManager.COL_URI, "https://www.apple.com/");
-//	values.put(ItemManager.COL_STATE, 0);
-//	apple.fromMap(values);
-//
-//	Item pear = new Item();
-//	pear.title = "Pear";
-//	try {
-//		pear.uri = new URI("https://pear.php.net/");
-//	} catch (URISyntaxException e) {
-//		throw new RuntimeException(e);
-//	}
-//	pear.state = true;
-//
-//	TableManager<Item> manager = new ItemManager();
-//	DBProxy proxy = db.writeProxy();
-//	manager.create(proxy, apple);
-//	manager.create(proxy, pear);
 
 	Iterable<T> items = (Iterable<T>) this.createManager().read(db.readProxy(), new HashMap<>());
 	List<T> list = new ArrayList<>();
@@ -73,5 +65,32 @@ protected void onCreate(Bundle savedInstanceState) {
 	recyclerView.setAdapter(this.createAdapter(list));
 
 	db.close();
+
+	this.then();
 }
+
+private void pull() {
+	try {
+		this.future = Executors.newFixedThreadPool(1).submit(new HTTPGETJSON(this.createResource()));
+	} catch (MalformedURLException e) {
+		Log.e("MalformedURLException", String.valueOf(e));
+	}
+}
+
+private void then() {
+	if (this.future == null) {
+		return;
+	}
+
+	try {
+		this.consumeFuture(this.future.get());
+	} catch (ExecutionException e) {
+		Log.e("ExecutionException", String.valueOf(e));
+	} catch (InterruptedException e) {
+		Log.e("InterruptedException", String.valueOf(e));
+	}
+}
+
+protected abstract void consumeFuture(String buf);
+
 }

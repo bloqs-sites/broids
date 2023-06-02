@@ -2,6 +2,7 @@ package pt.epcc.alunos.al220007.bloqs.models;
 
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +31,8 @@ protected void onCreate(Bundle savedInstanceState) {
 	filter.put(ItemManager.COL_ID, id);
 
 	Item i = new ItemManager().read(db.readProxy(), filter).iterator().next();
+
+	Toast.makeText(this, String.valueOf(i.getId()), Toast.LENGTH_SHORT).show();
 
 	TextView title = this.findViewById(R.id.title);
 	TextView uri = this.findViewById(R.id.uri);

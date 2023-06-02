@@ -3,7 +3,6 @@ package pt.epcc.alunos.al220007.bloqs.models
 import jvmdbhelper.db_defenitions.Column
 import jvmdbhelper.db_defenitions.Table
 import jvmdbhelper.db_defenitions.Type
-import jvmdbhelper.model.Model
 import jvmdbhelper.model.TableManager
 import jvmdbhelper.model.Values
 
@@ -27,7 +26,7 @@ class Tag : Model {
         COL_NAME to this.name as Any
     )
 
-    fun getId(): Long = id
+    override fun getId(): Long = this.id
 
     companion object : TableManager<Tag>() {
         private const val NAME = "tags"

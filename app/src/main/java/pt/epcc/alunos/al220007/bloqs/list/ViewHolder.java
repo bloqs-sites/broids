@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import jvmdbhelper.model.Model;
+import pt.epcc.alunos.al220007.bloqs.models.Model;
 
 public abstract class ViewHolder<T extends Model> extends RecyclerView.ViewHolder {
 protected final View view;

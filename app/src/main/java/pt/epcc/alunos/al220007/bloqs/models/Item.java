@@ -7,8 +7,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-import jvmdbhelper.model.Model;
-
 public class Item implements Model {
 
 public String title;
