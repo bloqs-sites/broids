@@ -36,6 +36,8 @@ android {
 dependencies {
     implementation 'com.github.torres-developer:jvmdbhelper:0.5.7'
 
+    implementation 'com.android.volley:volley:1.2.1'
+
     implementation 'com.eclipsesource.minimal-json:minimal-json:0.9.5'
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
