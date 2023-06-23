@@ -2,7 +2,10 @@ package pt.epcc.alunos.al220007.bloqs.models;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
 import java.util.Map;
+
+import pt.epcc.alunos.al220007.bloqs.models.core.Model;
 
 public class User implements Model {
 
@@ -12,19 +15,35 @@ private long id;
 
 @Override
 public void fromMap(@NonNull Map<String, ?> map) {
-
+	Object id = map.get(UserManager.COL_ID);
+	if (id != null) {
+		this.id = Long.parseLong(String.valueOf(id));
+	}
+	Object user = map.get(UserManager.COL_USER);
+	if (user instanceof CharSequence) {
+		this.user = user.toString();
+	}
+	Object pass = map.get(UserManager.COL_PASS);
+	if (pass instanceof CharSequence) {
+		this.pass = pass.toString();
+	}
 }
 
 @NonNull
 @Override
 public Map<String, Object> getImmutable() {
-	return null;
+	Map<String, Object> immutable = new HashMap<>();
+	immutable.put(UserManager.COL_ID, this.id);
+	return immutable;
 }
 
 @NonNull
 @Override
 public Map<String, Object> getMutable() {
-	return null;
+	Map<String, Object> mut = new HashMap<>();
+	mut.put(UserManager.COL_USER, this.user);
+	mut.put(UserManager.COL_PASS, this.pass);
+	return mut;
 }
 
 @Override
@@ -46,5 +65,15 @@ public String getPass() {
 
 public void setPass(String pass) {
 	this.pass = pass;
+}
+
+@NonNull
+@Override
+public String toString() {
+	return "User{" +
+		       "user='" + user + '\'' +
+		       ", pass='" + pass + '\'' +
+		       ", id=" + id +
+		       '}';
 }
 }

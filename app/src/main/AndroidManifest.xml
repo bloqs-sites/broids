@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Bloqs"
         tools:targetApi="31">
         <activity
+            android:name=".ResourcesList"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -23,21 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".models.ItemInfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".list.Activity"
-            android:exported="false" />
-        <activity
-            android:name=".models.ItemActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <service android:name=".list.IntentService" />
     </application>
 
 </manifest>
