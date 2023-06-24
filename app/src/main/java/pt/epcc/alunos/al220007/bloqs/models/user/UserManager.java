@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.bloqs.models;
+package pt.epcc.alunos.al220007.bloqs.models.user;
 
 import android.util.Log;
 
@@ -14,7 +14,7 @@ import java.net.URL;
 import jvmdbhelper.db_defenitions.Column;
 import jvmdbhelper.db_defenitions.Table;
 import jvmdbhelper.db_defenitions.Type;
-import pt.epcc.alunos.al220007.bloqs.models.core.ModelManager;
+import pt.epcc.alunos.al220007.bloqs.core.ModelManager;
 
 public class UserManager extends ModelManager<User> {
 public static final String NAME = "users";
@@ -71,8 +71,7 @@ public JSONArray selectJsonArray(JSONObject json) {
 
 @Override
 @NonNull
-public User fromJson(JSONObject json) {
-	User o = new User();
+public User fromJson(JSONObject json, User o) {
 	try {
 		o.setUser(json.getString("user"));
 	} catch (JSONException e) {

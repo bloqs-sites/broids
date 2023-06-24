@@ -1,11 +1,11 @@
-package pt.epcc.alunos.al220007.bloqs.models;
+package pt.epcc.alunos.al220007.bloqs.models.user;
 
 import androidx.annotation.NonNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import pt.epcc.alunos.al220007.bloqs.models.core.Model;
+import pt.epcc.alunos.al220007.bloqs.core.Model;
 
 public class User implements Model {
 
@@ -71,9 +71,9 @@ public void setPass(String pass) {
 @Override
 public String toString() {
 	return "User{" +
-		       "user='" + user + '\'' +
-		       ", pass='" + pass + '\'' +
-		       ", id=" + id +
-		       '}';
+		"user='" + user + '\'' +
+		", pass='" + pass + '\'' +
+		", id=" + id +
+		'}';
 }
 }

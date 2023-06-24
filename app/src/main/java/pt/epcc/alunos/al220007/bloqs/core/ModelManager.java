@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.bloqs.models.core;
+package pt.epcc.alunos.al220007.bloqs.core;
 
 import androidx.annotation.NonNull;
 
@@ -15,7 +15,7 @@ abstract public @NonNull URL createResourceURL();
 
 abstract public @NonNull JSONArray selectJsonArray(JSONObject json);
 
-abstract public @NonNull T fromJson(JSONObject json);
+abstract public @NonNull T fromJson(JSONObject json, T o);
 
 final public void populateFromJson(Helper db, JSONArray jsonArray) {
 	Iterable<T> iterator = new JSONArrayIterator<>(jsonArray, this);

@@ -8,22 +8,20 @@ import androidx.annotation.Nullable;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONObject;
 
 import pt.epcc.alunos.al220007.bloqs.async.Volley;
+import pt.epcc.alunos.al220007.bloqs.core.Model;
+import pt.epcc.alunos.al220007.bloqs.core.ModelManager;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;
-import pt.epcc.alunos.al220007.bloqs.models.core.Model;
-import pt.epcc.alunos.al220007.bloqs.models.core.ModelManager;
 
-public abstract class IntentService<T extends Model> extends android.app.IntentService implements Response.Listener<JSONObject>, Response.ErrorListener {
+public abstract class IntentService<T extends Model> extends android.app.IntentService implements Response.Listener<JSONObject> {
 
-private final String TAG = this.getClass().getSimpleName();
 public static final String NAME = "IntentService";
-
+private final String TAG = this.getClass().getSimpleName();
 private final ModelManager<T> manager = this.createManager();
 
 public IntentService() {
@@ -32,17 +30,19 @@ public IntentService() {
 
 abstract public ModelManager<T> createManager();
 
-abstract public @NonNull Class<Activity<T>> createRedirectActivityClass();
+abstract public @NonNull Class<?> createRedirectClass();
 
 @Override
 protected void onHandleIntent(@Nullable Intent intent) {
-	Volley.getInstance(() -> this).queue(new JsonObjectRequest(
+	Request<JSONObject> req = new JsonObjectRequest(
 		Request.Method.GET,
 		this.manager.createResourceURL().toString(),
 		null,
 		this,
-		this
-	));
+		(error) -> Log.i(this.TAG, "onErrorResponse:\t" + error.toString())
+	);
+	req.setTag(TAG);
+	Volley.getInstance(() -> this).queue(req);
 
 	Log.i(this.TAG, "onHandleIntent");
 }
@@ -55,15 +55,13 @@ public void onResponse(JSONObject response) {
 
 	db.close();
 
-	Intent i = new Intent(this, this.createRedirectActivityClass());
+	Intent i = new Intent(this, this.createRedirectClass());
+	boolean show = i.getBooleanExtra(Activity.SHOW, false);
 	i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+	Log.d(this.TAG, "onReceive -> Will show?:\t" + show);
+	i.putExtra(Activity.SHOW, show);
 	this.startActivity(i);
 
 	Log.i(this.TAG, "onResponse");
-}
-
-@Override
-public void onErrorResponse(VolleyError error) {
-	Log.i(this.TAG, "onErrorResponse:\t" + error.toString());
 }
 }

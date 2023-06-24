@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">bloqs</string>
-    <string name="delete">Delete</string>
-    <string name="reset_database">Reset Database</string>
-    <string name="fetching_data">Fetching Data</string>
+<string name="app_name">bloqs</string>
+<string name="delete">Delete</string>
+<string name="reset_database">Reset Database</string>
+<string name="fetching_data">Fetching Data</string>
+<string name="users">Users</string>
+<string name="id">ID: #</string>
+<string name="null_value"> (null) </string>
+<string name="clients">Clients</string>
 </resources>

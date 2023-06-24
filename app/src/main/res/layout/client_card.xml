@@ -19,18 +19,18 @@
 	android:text="@string/id" />
 
 <TextView
-	android:id="@+id/user_id"
+	android:id="@+id/client_id"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_toEndOf="@+id/id"
 	android:text="@string/null_value" />
 
 <TextView
-	android:id="@+id/user_user"
+	android:id="@+id/client_name"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_marginStart="24dp"
-	android:layout_toEndOf="@+id/user_id"
+	android:layout_toEndOf="@+id/client_id"
 	android:text="@null" />
 
 </RelativeLayout>

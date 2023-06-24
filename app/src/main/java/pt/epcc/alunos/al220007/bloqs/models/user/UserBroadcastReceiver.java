@@ -1,11 +1,10 @@
-package pt.epcc.alunos.al220007.bloqs.models;
+package pt.epcc.alunos.al220007.bloqs.models.user;
 
 import androidx.annotation.NonNull;
 
-import pt.epcc.alunos.al220007.bloqs.list.Activity;
+import pt.epcc.alunos.al220007.bloqs.core.ModelManager;
 import pt.epcc.alunos.al220007.bloqs.list.BroadcastReceiver;
 import pt.epcc.alunos.al220007.bloqs.list.IntentService;
-import pt.epcc.alunos.al220007.bloqs.models.core.ModelManager;
 
 public class UserBroadcastReceiver extends BroadcastReceiver<User> {
 @NonNull
@@ -23,8 +22,7 @@ public Class<IntentService<User>> createServiceClass() {
 
 @NonNull
 @Override
-@SuppressWarnings("unchecked")
-public Class<Activity<User>> createRedirectActivityClass() {
-	return (Class<Activity<User>>) (Class<?>) UserActivity.class;
+public Class<?> createRedirectClass() {
+	return UserActivity.class;
 }
 }

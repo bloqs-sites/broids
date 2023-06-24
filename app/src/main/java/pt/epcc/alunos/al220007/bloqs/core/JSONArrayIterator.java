@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.bloqs.models.core;
+package pt.epcc.alunos.al220007.bloqs.core;
 
 import androidx.annotation.NonNull;
 
@@ -26,7 +26,7 @@ public boolean hasNext() {
 @Override
 public T next() {
 	try {
-		return this.manager.fromJson(this.array.getJSONObject(this.counter++));
+		return this.manager.fromJson(this.array.getJSONObject(this.counter++), this.manager.init());
 	} catch (JSONException e) {
 		throw new RuntimeException(e);
 	}

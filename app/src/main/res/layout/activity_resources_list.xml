@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ResourcesListActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".ResourcesListActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<Button
+	android:id="@+id/users"
+	android:layout_width="256dp"
+	android:layout_height="wrap_content"
+	android:layout_gravity="center"
+	android:text="@string/users" />
+
+<Button
+	android:id="@+id/clients"
+	android:layout_width="256dp"
+	android:layout_height="wrap_content"
+	android:layout_gravity="center"
+	android:text="@string/clients" />
+
+</LinearLayout>

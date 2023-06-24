@@ -26,8 +26,8 @@ public static synchronized Volley getInstance(ContextSupplier ctx) {
 private RequestQueue getRequestQueue() {
 	if (this.requestQueue == null) {
 		this.requestQueue = com.android.volley.toolbox.Volley.newRequestQueue(Volley.ctx
-		                                                                       .getContext()
-		                                                                       .getApplicationContext());
+			.getContext()
+			.getApplicationContext());
 	}
 
 	return this.requestQueue;

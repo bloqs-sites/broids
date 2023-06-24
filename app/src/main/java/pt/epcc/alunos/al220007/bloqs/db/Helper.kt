@@ -9,7 +9,7 @@ import jvmdbhelper.DBHelper
 import jvmdbhelper.db_defenitions.DB
 
 class Helper(context: Context?, name: String?, factory: CursorFactory?, version: Int) :
-        SQLiteOpenHelper(context, name, factory, version) {
+    SQLiteOpenHelper(context, name, factory, version) {
     private lateinit var db: DB
 
     constructor(context: Context?, db: DB) : this(context, db.name, null, db.version.toInt()) {
@@ -61,7 +61,6 @@ class Helper(context: Context?, name: String?, factory: CursorFactory?, version:
     }
 
     override fun toString(): String {
-        return "${this.db.name} [v${this.db.version}]"
-        //return super.toString()
+        return "${this.db.name} [v${this.db.version}]: ${super.toString()}"
     }
 }

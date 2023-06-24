@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.bloqs.models.core;
+package pt.epcc.alunos.al220007.bloqs.core;
 
 import androidx.annotation.NonNull;
 
