@@ -20,4 +20,11 @@
 	android:layout_gravity="center"
 	android:text="@string/clients" />
 
+<Button
+	android:id="@+id/real_estates"
+	android:layout_width="256dp"
+	android:layout_height="wrap_content"
+	android:layout_gravity="center"
+	android:text="@string/real_estates" />
+
 </LinearLayout>

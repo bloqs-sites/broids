@@ -67,14 +67,12 @@ public void setPass(String pass) {
 	this.pass = pass;
 }
 
-@NonNull
-@Override
-public String toString() {
-	return "User{" +
-		"user='" + user + '\'' +
-		", pass='" + pass + '\'' +
-		", id=" + id +
-		'}';
+public byte[] getSalt() {
+	return salt;
+}
+
+public void setSalt(byte[] salt) {
+	this.salt = salt;
 }
 
 public byte[] getSalt() {

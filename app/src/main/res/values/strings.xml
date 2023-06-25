@@ -1,13 +1,14 @@
 <resources>
 <string name="app_name">bloqs</string>
-<string name="delete">Delete</string>
 <string name="reset_database">Reset Database</string>
 <string name="fetching_data">Fetching Data</string>
-<string name="users">Users</string>
-<string name="id">ID: #</string>
-<string name="null_value"> (null) </string>
-<string name="clients">Clients</string>
 <string name="username">Username</string>
 <string name="password">Password</string>
 <string name="log_in">Log In</string>
+<string name="users">Users</string>
+<string name="clients">Clients</string>
+<string name="real_estates">Real Estates</string>
+<string name="id">ID: #</string>
+<string name="null_value"> (null) </string>
+<string name="delete">Delete</string>
 </resources>

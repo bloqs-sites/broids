@@ -8,11 +8,12 @@ import jvmdbhelper.db_defenitions.Migration
 import jvmdbhelper.db_defenitions.Migrations
 import jvmdbhelper.db_defenitions.Seeders
 import pt.epcc.alunos.al220007.bloqs.models.client.ClientManager
+import pt.epcc.alunos.al220007.bloqs.models.real_estate.RealEstateManager
 import pt.epcc.alunos.al220007.bloqs.models.user.UserManager
 
 object Database : DB() {
     private const val NAME = "bloqs"
-    private const val VERSION = 7u
+    private const val VERSION = 8u
 
     override val migrations: Migrations
         get() = this.migrations()
@@ -57,6 +58,25 @@ object Database : DB() {
                 override fun upgrade(dbh: DBHelper) {
                     try {
                         dbh.createTable(clientManager)
+                    } catch (_: SQLiteException) {
+
+                    }
+                }
+            },
+            8u to object : Migration {
+                val manager = RealEstateManager()
+
+                override fun downgrade(dbh: DBHelper) {
+                    try {
+                        dbh.deleteTable(manager)
+                    } catch (_: SQLiteException) {
+
+                    }
+                }
+
+                override fun upgrade(dbh: DBHelper) {
+                    try {
+                        dbh.createTable(manager)
                     } catch (_: SQLiteException) {
 
                     }

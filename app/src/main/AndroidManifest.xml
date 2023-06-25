@@ -31,10 +31,13 @@
 	android:exported="false" />
 <activity android:name=".models.user.UserActivity" />
 <activity android:name=".models.client.ClientActivity" />
+<activity android:name=".models.real_estate.RealEstateActivity" />
+
+<service android:name=".models.user.LoginIntentService" />
 
 <service android:name=".models.user.UserIntentService" />
 <service android:name=".models.client.ClientIntentService" />
-<service android:name=".models.user.LoginIntentService" />
+<service android:name=".models.real_estate.RealEstateIntentService" />
 </application>
 
 </manifest>
