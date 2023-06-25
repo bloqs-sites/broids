@@ -52,10 +52,6 @@ class Helper(context: Context?, name: String?, factory: CursorFactory?, version:
         return DBHelper(this.proxy(db))
     }
 
-    fun readHelper(): DBHelper {
-        return DBHelper(this.readProxy())
-    }
-
     fun writeHelper(): DBHelper {
         return DBHelper(this.writeProxy())
     }

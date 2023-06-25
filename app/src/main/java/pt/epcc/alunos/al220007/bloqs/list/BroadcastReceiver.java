@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import java.util.HashMap;
 import java.util.Objects;
 
-import pt.epcc.alunos.al220007.bloqs.core.Model;
+import jvmdbhelper.model.Model;
 import pt.epcc.alunos.al220007.bloqs.core.ModelManager;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;

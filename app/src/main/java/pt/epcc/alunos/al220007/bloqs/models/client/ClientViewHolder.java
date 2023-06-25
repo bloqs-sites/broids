@@ -1,6 +1,7 @@
 package pt.epcc.alunos.al220007.bloqs.models.client;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,6 +33,8 @@ protected void manageItemView() {
 
 @Override
 public void update(AdapterPublisherEvent event) {
-
+	if (event == AdapterPublisherEvent.UPDATE) {
+		Log.d("ClientViewHolder", "update");
+	}
 }
 }

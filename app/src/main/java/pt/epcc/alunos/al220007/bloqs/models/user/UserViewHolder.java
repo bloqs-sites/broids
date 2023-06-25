@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -31,6 +32,19 @@ protected void manageItemView() {
 
 @Override
 public void update(AdapterPublisherEvent event) {
-
+	switch (event) {
+		case CREATE:
+			Toast.makeText(
+				this.getContext(),
+				this.getModel().getId() + " knows",
+				Toast.LENGTH_SHORT
+			).show();
+		case DELETE:
+			Toast.makeText(
+				this.getContext(),
+				this.getModel().getId() + " stills here",
+				Toast.LENGTH_SHORT
+			).show();
+	}
 }
 }

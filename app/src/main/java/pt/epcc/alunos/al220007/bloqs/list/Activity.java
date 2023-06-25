@@ -19,16 +19,14 @@ import java.util.List;
 import jvmdbhelper.model.TableManager;
 import pt.epcc.alunos.al220007.bloqs.R;
 import pt.epcc.alunos.al220007.bloqs.ResourcesListActivity;
-import pt.epcc.alunos.al220007.bloqs.core.Model;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;
 
-abstract public class Activity<T extends Model> extends AppCompatActivity implements View.OnClickListener, ActivityProxy {
+abstract public class Activity<T extends jvmdbhelper.model.Model> extends AppCompatActivity implements View.OnClickListener, ActivityProxy {
 public static final String SHOW = "show";
-
-public final String NO_ITEMS_MSG = "There are no `" + this.createManager().getName() + "` to show right now";
 private static final int LAYOUT = R.layout.activity_models_list;
 private static final int RECYCLER_VIEW = R.id.list;
+public final String NO_ITEMS_MSG = "There are no `" + this.createManager().getName() + "` to show right now";
 private final String TAG = this.getClass().getSimpleName();
 
 private Button delete;

@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.net.URL;
 
+import jvmdbhelper.model.Model;
 import jvmdbhelper.model.TableManager;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;
 

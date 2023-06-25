@@ -7,6 +7,8 @@ import org.json.JSONException;
 
 import java.util.Iterator;
 
+import jvmdbhelper.model.Model;
+
 public class JSONArrayIterator<T extends Model> implements Iterator<T>, Iterable<T> {
 private final JSONArray array;
 private final ModelManager<T> manager;

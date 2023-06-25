@@ -5,12 +5,13 @@ import androidx.annotation.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
-import pt.epcc.alunos.al220007.bloqs.core.Model;
+import jvmdbhelper.model.Model;
 
 public class User implements Model {
 
 private String user;
 private String pass;
+private byte[] salt;
 private long id;
 
 @Override
@@ -46,7 +47,6 @@ public Map<String, Object> getMutable() {
 	return mut;
 }
 
-@Override
 public long getId() {
 	return this.id;
 }
@@ -75,5 +75,13 @@ public String toString() {
 		", pass='" + pass + '\'' +
 		", id=" + id +
 		'}';
+}
+
+public byte[] getSalt() {
+	return salt;
+}
+
+public void setSalt(byte[] salt) {
+	this.salt = salt;
 }
 }

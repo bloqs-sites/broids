@@ -11,17 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import pt.epcc.alunos.al220007.bloqs.core.Model;
+import jvmdbhelper.model.Model;
 
 abstract public class Adapter<T extends Model> extends RecyclerView.Adapter<ViewHolder<T>> {
+public final ActivityProxy proxy;
 private final String TAG = this.getClass().getSimpleName();
 private final Context ctx;
-
 private final List<T> list;
-
 private final AdapterPublisher<T> publisher;
-
-public final ActivityProxy proxy;
 
 public Adapter(Context ctx, List<T> list, ActivityProxy proxy) {
 	this.ctx = ctx;
@@ -46,16 +43,21 @@ public ViewHolder<T> onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
 
 	this.publisher.register(viewHolder);
 
+	Log.i(TAG, "onCreateViewHolder");
 	return viewHolder;
 }
 
 @Override
 public void onBindViewHolder(@NonNull ViewHolder<T> holder, int position) {
 	holder.setModel(this.list.get(position));
+
+	Log.i(TAG, "onBindViewHolder");
 }
 
 @Override
 public int getItemCount() {
+	Log.i(TAG, "getItemCount");
+
 	return this.list.size();
 }
 

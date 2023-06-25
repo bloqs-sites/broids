@@ -2,8 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	tools:context=".Login">
+	android:layout_height="wrap_content"
+	android:layout_gravity="center"
+	android:orientation="vertical"
+	android:paddingHorizontal="64dp"
+	tools:context=".LoginActivity">
 
+<TextView
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:labelFor="@+id/username"
+	android:text="@string/username" />
+
+<EditText
+	android:id="@+id/username"
+	android:layout_width="256dp"
+	android:layout_height="48dp"
+	android:layout_gravity="center"
+	android:autofillHints="username"
+	android:inputType="text" />
+
+<TextView
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:labelFor="@+id/password"
+	android:text="@string/password" />
+
+<EditText
+	android:id="@+id/password"
+	android:layout_width="256dp"
+	android:layout_height="48dp"
+	android:layout_gravity="center"
+	android:autofillHints="password"
+	android:inputType="textPassword" />
+
+<Button
+	android:id="@+id/login"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_gravity="center"
+	android:text="@string/log_in" />
 
 </LinearLayout>

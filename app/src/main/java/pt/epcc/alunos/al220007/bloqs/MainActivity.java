@@ -67,8 +67,6 @@ protected void onStop() {
 	this.unregisterReceiver(this.receiver);
 
 	Log.i(TAG, "onStop");
-
-	this.finish();
 }
 
 @Override

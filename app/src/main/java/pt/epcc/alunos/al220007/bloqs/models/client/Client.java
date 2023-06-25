@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import pt.epcc.alunos.al220007.bloqs.core.Model;
+import jvmdbhelper.model.Model;
 
 public class Client implements Model {
 
@@ -61,7 +61,6 @@ public Map<String, Object> getMutable() {
 	return mut;
 }
 
-@Override
 public long getId() {
 	return this.id;
 }

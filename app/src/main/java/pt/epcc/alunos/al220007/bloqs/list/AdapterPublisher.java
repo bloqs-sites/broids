@@ -5,8 +5,8 @@ import android.view.View;
 import java.util.HashSet;
 import java.util.Set;
 
+import jvmdbhelper.model.Model;
 import jvmdbhelper.model.TableManager;
-import pt.epcc.alunos.al220007.bloqs.core.Model;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;
 
@@ -47,6 +47,7 @@ public void delete(ViewHolder<T> holder, TableManager<T> manager) {
 	manager.delete(db.writeProxy(), holder.getModel());
 	db.close();
 
+	this.unregister(holder);
 	this.update(AdapterPublisherEvent.DELETE);
 
 	this.adapter.proxy.checkList();

@@ -7,4 +7,7 @@
 <string name="id">ID: #</string>
 <string name="null_value"> (null) </string>
 <string name="clients">Clients</string>
+<string name="username">Username</string>
+<string name="password">Password</string>
+<string name="log_in">Log In</string>
 </resources>

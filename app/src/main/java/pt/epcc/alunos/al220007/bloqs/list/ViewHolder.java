@@ -7,10 +7,11 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import pt.epcc.alunos.al220007.bloqs.core.Model;
+import jvmdbhelper.model.Model;
 
-public abstract class ViewHolder<T extends Model> extends RecyclerView.ViewHolder implements AdapterSubscriber<T> {
+public abstract class ViewHolder<T extends Model> extends RecyclerView.ViewHolder implements AdapterSubscriber {
 private final Context ctx;
+@SuppressWarnings("FieldCanBeLocal")
 private final String TAG = this.getClass().getSimpleName();
 private AdapterProxy<T> proxy;
 private T model;
@@ -40,7 +41,6 @@ protected AdapterProxy<T> getPublisherProxy() {
 	return this.proxy;
 }
 
-@Override
 public void setPublisherProxy(AdapterProxy<T> proxy) {
 	this.proxy = proxy;
 }
