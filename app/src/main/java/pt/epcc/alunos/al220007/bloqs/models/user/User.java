@@ -74,12 +74,4 @@ public byte[] getSalt() {
 public void setSalt(byte[] salt) {
 	this.salt = salt;
 }
-
-public byte[] getSalt() {
-	return salt;
-}
-
-public void setSalt(byte[] salt) {
-	this.salt = salt;
-}
 }
