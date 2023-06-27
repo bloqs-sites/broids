@@ -9,20 +9,16 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import pt.epcc.alunos.al220007.bloqs.models.client.ClientActivity;
-import pt.epcc.alunos.al220007.bloqs.models.real_estate.RealEstateActivity;
-import pt.epcc.alunos.al220007.bloqs.models.user.UserActivity;
+import pt.epcc.alunos.al220007.bloqs.models.real_estate.RealEstateManagementActivity;
 
-public class ResourcesListActivity extends AppCompatActivity implements View.OnClickListener {
-private static final String TAG = "ResourcesListActivity";
-
-private static final int USER_ACT_BTN_ID = R.id.users;
+public class ApplicationManagementActivity extends AppCompatActivity implements View.OnClickListener {
+private static final String TAG = "ManagementActivity";
 private static final int CLIENT_ACT_BTN_ID = R.id.clients;
-
 private static final int REAL_ESTATE_ACT_BTN_ID = R.id.real_estates;
 
-private static final int LAYOUT = R.layout.activity_resources_list;
+private static final int LAYOUT = R.layout.activity_application_management;
 
-private Button users, clients, real_estate;
+private Button clients, realEstates;
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -35,28 +31,22 @@ protected void onCreate(Bundle savedInstanceState) {
 }
 
 private void findViews() {
-	this.users = this.findViewById(USER_ACT_BTN_ID);
-	this.users.setOnClickListener(this);
 	this.clients = this.findViewById(CLIENT_ACT_BTN_ID);
 	this.clients.setOnClickListener(this);
-	this.real_estate = this.findViewById(REAL_ESTATE_ACT_BTN_ID);
-	this.real_estate.setOnClickListener(this);
+	this.realEstates = this.findViewById(REAL_ESTATE_ACT_BTN_ID);
+	this.realEstates.setOnClickListener(this);
 }
 
 @Override
 public void onClick(View v) {
 	Class<?> cls = null;
 
-	if (v == this.users) {
-		cls = UserActivity.class;
-	}
-
 	if (v == this.clients) {
 		cls = ClientActivity.class;
 	}
 
-	if (v == this.real_estate) {
-		cls = RealEstateActivity.class;
+	if (v == this.realEstates) {
+		cls = RealEstateManagementActivity.class;
 	}
 
 	if (cls != null) {

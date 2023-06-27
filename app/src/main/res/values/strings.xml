@@ -5,10 +5,20 @@
 <string name="username">Username</string>
 <string name="password">Password</string>
 <string name="log_in">Log In</string>
-<string name="users">Users</string>
 <string name="clients">Clients</string>
 <string name="real_estates">Real Estates</string>
 <string name="id">ID: #</string>
 <string name="null_value"> (null) </string>
 <string name="delete">Delete</string>
+<string name="application_main_panel">Application Main Panel</string>
+<string name="application_management">Application Management</string>
+<string name="insert">Insert</string>
+<string name="delete_all">Delete All</string>
+<string name="typology">Typology:</string>
+<string name="location">Location</string>
+<string name="characteristics">Characteristics:</string>
+<string name="edit">Edit</string>
+<string name="create">Create</string>
+<string name="name">Name</string>
+<string name="age">Age</string>
 </resources>

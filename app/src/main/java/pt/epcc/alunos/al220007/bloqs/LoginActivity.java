@@ -72,7 +72,7 @@ private void attemptLogin() {
 	if (user != null && Password.verify(password, user)) {
 		Log.i(TAG, "attemptLogin -> " + user.getUser() + " logged in");
 		this.username.setText("");
-		this.startActivity(new Intent(this, ResourcesListActivity.class));
+		this.startActivity(new Intent(this, ApplicationMainPanelActivity.class));
 		finish();
 		return;
 	}

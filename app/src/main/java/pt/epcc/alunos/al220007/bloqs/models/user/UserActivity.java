@@ -1,5 +1,7 @@
 package pt.epcc.alunos.al220007.bloqs.models.user;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,5 +38,15 @@ protected RecyclerView.LayoutManager createLayoutManager() {
 @Override
 protected BroadcastReceiver<User> getBroadcastReceiver() {
 	return this.receiver;
+}
+
+@Override
+protected View.OnClickListener onCreate() {
+	return null;
+}
+
+@Override
+protected boolean resetTableButton() {
+	return true;
 }
 }

@@ -38,7 +38,7 @@ public void fromMap(@NonNull Map<String, ?> map) {
 		try {
 			this.image = new URL(image.toString());
 		} catch (MalformedURLException e) {
-			throw new RuntimeException(e);
+			this.image = null;
 		}
 	}
 }

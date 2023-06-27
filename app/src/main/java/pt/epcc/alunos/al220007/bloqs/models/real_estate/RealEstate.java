@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +55,7 @@ public void fromMap(@NonNull Map<String, ?> map) {
 			throw new RuntimeException(e);
 		}
 	}
+	this.characteristics = new ArrayList<>();
 }
 
 @NonNull
@@ -111,7 +113,4 @@ public List<Characteristics> getCharacteristics() {
 	return characteristics;
 }
 
-public void setCharacteristics(List<Characteristics> characteristics) {
-	this.characteristics = characteristics;
-}
 }

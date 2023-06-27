@@ -9,6 +9,7 @@
 	android:orientation="horizontal">
 
 <RelativeLayout
+	android:layout_gravity="center"
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content">
 
@@ -40,6 +41,7 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:layout_gravity="end"
+	android:layout_marginHorizontal="24dp"
 	android:text="@string/delete" />
 </LinearLayout>
 </androidx.cardview.widget.CardView>

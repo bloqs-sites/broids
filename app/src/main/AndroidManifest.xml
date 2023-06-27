@@ -15,6 +15,15 @@
 	android:theme="@style/Theme.Bloqs"
 	tools:targetApi="31">
 <activity
+	android:name=".models.real_estate.RealEstateCreationActivity"
+	android:exported="false" />
+<activity
+	android:name=".models.client.ClientCreationActivity"
+	android:exported="false" />
+<activity
+	android:name=".ApplicationManagementActivity"
+	android:exported="false" />
+<activity
 	android:name=".MainActivity"
 	android:exported="true">
 <intent-filter>
@@ -27,14 +36,13 @@
 	android:name=".LoginActivity"
 	android:exported="false" />
 <activity
-	android:name=".ResourcesListActivity"
+	android:name=".ApplicationMainPanelActivity"
 	android:exported="false" />
 <activity android:name=".models.user.UserActivity" />
 <activity android:name=".models.client.ClientActivity" />
 <activity android:name=".models.real_estate.RealEstateActivity" />
 
 <service android:name=".models.user.LoginIntentService" />
-
 <service android:name=".models.user.UserIntentService" />
 <service android:name=".models.client.ClientIntentService" />
 <service android:name=".models.real_estate.RealEstateIntentService" />

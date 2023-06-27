@@ -1,9 +1,10 @@
 package pt.epcc.alunos.al220007.bloqs.models.real_estate;
 
+import android.content.Intent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -13,8 +14,7 @@ import pt.epcc.alunos.al220007.bloqs.list.Activity;
 import pt.epcc.alunos.al220007.bloqs.list.Adapter;
 import pt.epcc.alunos.al220007.bloqs.list.BroadcastReceiver;
 
-public class RealEstateActivity extends Activity<RealEstate> {
-private static final int GRID_COLS = 3;
+public class RealEstateManagementActivity extends Activity<RealEstate> {
 private final BroadcastReceiver<RealEstate> receiver = new RealEstateBroadcastReceiver();
 
 @NonNull
@@ -32,7 +32,7 @@ protected Adapter<RealEstate> createAdapter(List<RealEstate> list) {
 @NonNull
 @Override
 protected RecyclerView.LayoutManager createLayoutManager() {
-	return new GridLayoutManager(this, GRID_COLS);
+	return new LinearLayoutManager(this);
 }
 
 @NonNull
@@ -43,11 +43,11 @@ protected BroadcastReceiver<RealEstate> getBroadcastReceiver() {
 
 @Override
 protected View.OnClickListener onCreate() {
-	return null;
+	return v -> this.startActivity(new Intent(this, RealEstateCreationActivity.class));
 }
 
 @Override
 protected boolean resetTableButton() {
-	return false;
+	return true;
 }
 }

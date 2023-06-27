@@ -13,7 +13,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONObject;
 
 import jvmdbhelper.model.Model;
-import pt.epcc.alunos.al220007.bloqs.async.Volley;
+import pt.epcc.alunos.al220007.bloqs.core.async.Volley;
 import pt.epcc.alunos.al220007.bloqs.core.ModelManager;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;

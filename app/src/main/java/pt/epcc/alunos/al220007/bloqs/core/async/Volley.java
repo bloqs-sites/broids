@@ -1,4 +1,4 @@
-package pt.epcc.alunos.al220007.bloqs.async;
+package pt.epcc.alunos.al220007.bloqs.core.async;
 
 import android.graphics.Bitmap;
 import android.util.LruCache;

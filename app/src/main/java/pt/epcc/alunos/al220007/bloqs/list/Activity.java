@@ -16,13 +16,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import jvmdbhelper.model.Model;
 import jvmdbhelper.model.TableManager;
 import pt.epcc.alunos.al220007.bloqs.R;
-import pt.epcc.alunos.al220007.bloqs.ResourcesListActivity;
+import pt.epcc.alunos.al220007.bloqs.ApplicationMainPanelActivity;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;
 
-abstract public class Activity<T extends jvmdbhelper.model.Model> extends AppCompatActivity implements View.OnClickListener, ActivityProxy {
+abstract public class Activity<T extends Model> extends AppCompatActivity implements View.OnClickListener, ActivityProxy {
 public static final String SHOW = "show";
 private static final int LAYOUT = R.layout.activity_models_list;
 private static final int RECYCLER_VIEW = R.id.list;
@@ -40,6 +41,10 @@ protected abstract @NonNull Adapter<T> createAdapter(List<T> list);
 protected abstract @NonNull RecyclerView.LayoutManager createLayoutManager();
 
 protected abstract @NonNull BroadcastReceiver<T> getBroadcastReceiver();
+
+protected abstract View.OnClickListener onCreate();
+
+protected abstract boolean resetTableButton();
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +68,22 @@ protected void onResume() {
 	if (this.getIntent().getBooleanExtra(SHOW, false)) {
 		Helper db = Database.INSTANCE.createHelper(this);
 		TableManager<T> manager = this.createManager();
-		Button btn = this.findViewById(R.id.delete);
-		btn.setOnClickListener(v -> {
-			manager.delete(db.writeProxy(), manager.init());
-			this.finish();
-		});
+		Button insert = this.findViewById(R.id.insert);
+		View.OnClickListener onCreate = this.onCreate();
+		if (onCreate != null) {
+			insert.setOnClickListener(onCreate);
+		} else {
+			insert.setVisibility(View.GONE);
+		}
+		Button delete = this.findViewById(R.id.delete);
+		if (this.resetTableButton()) {
+			delete.setOnClickListener(v -> {
+				manager.delete(db.writeProxy(), manager.init());
+				this.finish();
+			});
+		} else {
+			delete.setVisibility(View.GONE);
+		}
 
 		Iterable<T> items = manager.read(db.readProxy(), new HashMap<>());
 		this.list = new ArrayList<>();
@@ -134,7 +150,7 @@ public void onClick(View v) {
 
 		db.close();
 
-		this.startActivity(new Intent(this, ResourcesListActivity.class));
+		this.startActivity(new Intent(this, ApplicationMainPanelActivity.class));
 		this.finish();
 	}
 }

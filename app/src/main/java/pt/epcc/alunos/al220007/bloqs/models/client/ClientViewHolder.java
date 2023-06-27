@@ -1,6 +1,7 @@
 package pt.epcc.alunos.al220007.bloqs.models.client;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,9 @@ protected void manageItemView() {
 	TextView name = this.itemView.findViewById(R.id.client_name);
 	name.setText(o.getName());
 
+	Button edit = this.itemView.findViewById(R.id.edit);
+	edit.setOnClickListener(this::edit);
+
 	Button delete = this.itemView.findViewById(R.id.delete);
 	delete.setOnClickListener(v -> this.getPublisherProxy().delete(this, new ClientManager()));
 }
@@ -36,5 +40,11 @@ public void update(AdapterPublisherEvent event) {
 	if (event == AdapterPublisherEvent.UPDATE) {
 		Log.d("ClientViewHolder", "update");
 	}
+}
+
+private void edit(View v) {
+	Intent i = new Intent(this.getContext(),ClientCreationActivity.class);
+	i.putExtra("ID", this.getModel().getId());
+	this.getContext().startActivity(i);
 }
 }
