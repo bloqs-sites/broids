@@ -15,7 +15,8 @@ import pt.epcc.alunos.al220007.bloqs.list.Adapter;
 import pt.epcc.alunos.al220007.bloqs.list.BroadcastReceiver;
 
 public class RealEstateManagementActivity extends Activity<RealEstate> {
-private final BroadcastReceiver<RealEstate> receiver = new RealEstateBroadcastReceiver();
+
+private final BroadcastReceiver<RealEstate> receiver = new RealEstateCreationBroadcastReceiver();
 
 @NonNull
 @Override
@@ -26,7 +27,7 @@ protected TableManager<RealEstate> createManager() {
 @NonNull
 @Override
 protected Adapter<RealEstate> createAdapter(List<RealEstate> list) {
-	return new RealEstateAdapter(this, list, this);
+	return new RealEstateManagerAdapter(this, list, this);
 }
 
 @NonNull

@@ -41,6 +41,7 @@
 <activity android:name=".models.user.UserActivity" />
 <activity android:name=".models.client.ClientActivity" />
 <activity android:name=".models.real_estate.RealEstateActivity" />
+<activity android:name="pt.epcc.alunos.al220007.bloqs.models.real_estate.RealEstateManagementActivity" />
 
 <service android:name=".models.user.LoginIntentService" />
 <service android:name=".models.user.UserIntentService" />

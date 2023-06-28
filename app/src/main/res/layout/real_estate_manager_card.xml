@@ -17,8 +17,8 @@
 	android:id="@+id/real_estate_description"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:layout_below="@+id/real_estate_image"
 	android:layout_marginVertical="4dp"
+	android:layout_toEndOf="@+id/real_estate_image"
 	android:text="@null" />
 
 <TextView
@@ -27,6 +27,7 @@
 	android:layout_height="wrap_content"
 	android:layout_below="@+id/real_estate_description"
 	android:layout_marginVertical="4dp"
+	android:layout_toEndOf="@+id/real_estate_image"
 	android:text="@string/typology" />
 
 <TextView
@@ -44,6 +45,7 @@
 	android:layout_height="wrap_content"
 	android:layout_below="@+id/real_estate_typology"
 	android:layout_marginVertical="4dp"
+	android:layout_toEndOf="@+id/real_estate_image"
 	android:text="@string/location" />
 
 <TextView
@@ -61,6 +63,7 @@
 	android:layout_height="wrap_content"
 	android:layout_below="@+id/real_estate_location"
 	android:layout_marginTop="4dp"
+	android:layout_toEndOf="@+id/real_estate_image"
 	android:text="@string/characteristics" />
 
 <ListView
@@ -68,6 +71,24 @@
 	android:layout_width="wrap_content"
 	android:layout_height="56dp"
 	android:layout_below="@id/real_estate_characteristics_label"
-	android:layout_marginStart="24dp" />
+	android:layout_marginStart="24dp"
+	android:layout_toEndOf="@+id/real_estate_image" />
+
+<Button
+	android:id="@+id/edit"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@+id/real_estate_characteristics"
+	android:layout_gravity="end"
+	android:text="@string/edit" />
+
+<Button
+	android:id="@+id/delete"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_below="@+id/real_estate_characteristics"
+	android:layout_gravity="end"
+	android:layout_toEndOf="@+id/edit"
+	android:text="@string/delete" />
 </RelativeLayout>
 </androidx.cardview.widget.CardView>

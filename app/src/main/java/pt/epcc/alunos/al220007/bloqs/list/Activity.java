@@ -18,8 +18,8 @@ import java.util.List;
 
 import jvmdbhelper.model.Model;
 import jvmdbhelper.model.TableManager;
-import pt.epcc.alunos.al220007.bloqs.R;
 import pt.epcc.alunos.al220007.bloqs.ApplicationMainPanelActivity;
+import pt.epcc.alunos.al220007.bloqs.R;
 import pt.epcc.alunos.al220007.bloqs.db.Database;
 import pt.epcc.alunos.al220007.bloqs.db.Helper;
 

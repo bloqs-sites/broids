@@ -1,82 +1,78 @@
 package pt.epcc.alunos.al220007.bloqs.models.client;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
+import jvmdbhelper.model.TableManager;
 import pt.epcc.alunos.al220007.bloqs.R;
-import pt.epcc.alunos.al220007.bloqs.core.ModelManager;
-import pt.epcc.alunos.al220007.bloqs.db.Database;
-import pt.epcc.alunos.al220007.bloqs.db.Helper;
+import pt.epcc.alunos.al220007.bloqs.list.CreationActivity;
 
-public class ClientCreationActivity extends AppCompatActivity implements View.OnClickListener {
-private static final int CREATE_BTN_ID = R.id.create;
+public class ClientCreationActivity extends CreationActivity<Client> {
 private static final int NAME_ID = R.id.name;
 private static final int AGE_ID = R.id.age;
-private static final int LAYOUT = R.layout.activity_client_creation;
-
 private TextView name, age;
-private Button create;
 
-private Client model;
-
+@NonNull
 @Override
-protected void onCreate(Bundle savedInstanceState) {
-	super.onCreate(savedInstanceState);
-	setContentView(LAYOUT);
-
-	this.findViews();
+protected TableManager<Client> createManager() {
+	return new ClientManager();
 }
 
-private void findViews() {
-	this.name = this.findViewById(NAME_ID);
-	this.age = this.findViewById(AGE_ID);
-	this.create = this.findViewById(CREATE_BTN_ID);
-	this.create.setOnClickListener(this);
+@Override
+protected int formLayout() {
+	return R.layout.client_form;
+}
 
+@Nullable
+@Override
+protected Map<String, Object> createWhereClause(Intent intent) {
+	if (intent == null) {
+		return null;
+	}
 
-	long id = this.getIntent().getLongExtra("ID", Long.MAX_VALUE);
-	if (id != Long.MAX_VALUE) {
-		ModelManager<Client> manager = new ClientManager();
-		Helper db = Database.INSTANCE.createHelper(this);
-		Map<String, Object> where = new HashMap<>();
-		where.put(ClientManager.COL_ID, id);
-		Iterator<Client> iterator = manager.read(db.readProxy(), where).iterator();
-		if (iterator.hasNext()) {
-			this.model = iterator.next();
-			this.name.setText(this.model.getName());
-			this.age.setText(String.valueOf(this.model.getAge()));
-		}
-		db.close();
+	long id = intent.getLongExtra("ID", Long.MAX_VALUE);
+	if (id == Long.MAX_VALUE) {
+		return null;
+	}
+
+	Map<String, Object> where = new HashMap<>();
+	where.put(ClientManager.COL_ID, id);
+
+	return where;
+}
+
+@Override
+protected void findViews(@NonNull View view, @Nullable Client o) {
+	this.name = view.findViewById(NAME_ID);
+	this.age = view.findViewById(AGE_ID);
+
+	if (o != null) {
+		this.name.setText(o.getName());
+		this.age.setText(String.valueOf(o.getAge()));
 	}
 }
 
 @Override
-public void onClick(View v) {
-	if (v == this.create) {
-		ModelManager<Client> manager = new ClientManager();
-		Helper db = Database.INSTANCE.createHelper(this);
-		if (this.model != null) {
-			this.model.setName(String.valueOf(this.name.getText()));
-			this.model.setAge(Byte.parseByte(this.age.getText().toString()));
-			manager.update(db.writeProxy(), this.model);
-		} else {
-			Client o = new Client();
-			o.setName(String.valueOf(this.name.getText()));
-			o.setAge(Byte.parseByte(this.age.getText().toString()));
-			manager.create(db.writeProxy(), o);
-		}
-		db.close();
-		this.startActivity(new Intent(this, ClientActivity.class));
-		finish();
+protected void manageModel(@NonNull Client o) {
+	o.setName(String.valueOf(this.name.getText()));
+	try {
+		o.setAge(Byte.parseByte(this.age.getText().toString()));
+	} catch (NumberFormatException e) {
+		Toast.makeText(this, "Too old", Toast.LENGTH_SHORT).show();
 	}
+}
+
+@NonNull
+@Override
+protected Class<?> createRedirectClass() {
+	return ClientActivity.class;
 }
 }

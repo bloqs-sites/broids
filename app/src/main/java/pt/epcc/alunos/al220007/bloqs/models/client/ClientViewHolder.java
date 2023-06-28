@@ -43,7 +43,7 @@ public void update(AdapterPublisherEvent event) {
 }
 
 private void edit(View v) {
-	Intent i = new Intent(this.getContext(),ClientCreationActivity.class);
+	Intent i = new Intent(this.getContext(), ClientCreationActivity.class);
 	i.putExtra("ID", this.getModel().getId());
 	this.getContext().startActivity(i);
 }
