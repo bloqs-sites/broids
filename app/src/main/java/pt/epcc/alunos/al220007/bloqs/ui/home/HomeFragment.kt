@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Response
 import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonArrayRequest
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import org.json.JSONArray
 import org.json.JSONObject
@@ -49,8 +48,12 @@ class HomeFragment : Fragment(), Response.Listener<JSONArray>, Response.ErrorLis
 
         val url = URL("https://bloqsenjin-ten.vercel.app/api/rest/bloq")
 
+<<<<<<< HEAD
         val req = JsonArrayRequest(url.toString(), this, this)
         //req.headers["Origin"] = "http://fsf.org/"
+=======
+        val req = Request(url.toString(), this, this)
+>>>>>>> 73985e4 (start project client)
 
         Volley.getInstance { context }.queue(req)
 
