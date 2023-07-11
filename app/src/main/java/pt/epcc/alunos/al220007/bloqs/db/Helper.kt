@@ -4,7 +4,6 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteDatabase.CursorFactory
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 import jvmdbhelper.DBHelper
 import jvmdbhelper.db_defenitions.DB
 
@@ -19,12 +18,10 @@ class Helper(context: Context?, name: String?, factory: CursorFactory?, version:
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        Log.i(this.toString(), "Helper::onCreate")
         this.db.create(helper(db))
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        Log.d("onUpgrade", "oldVersion:\t $oldVersion\nnewVersion:\t $newVersion")
         this.db.migrate(helper(db), oldVersion.toUInt(), newVersion.toUInt())
     }
 
@@ -57,6 +54,6 @@ class Helper(context: Context?, name: String?, factory: CursorFactory?, version:
     }
 
     override fun toString(): String {
-        return "${this.db.name} [v${this.db.version}]: ${super.toString()}"
+        return "${this.db.name} [v${this.db.version}]:\n${super.toString()}"
     }
 }

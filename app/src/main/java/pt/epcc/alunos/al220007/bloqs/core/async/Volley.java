@@ -7,8 +7,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 
-import org.json.JSONObject;
-
 public class Volley {
 
 public static final int LRU_CACHE_MAX_SIZE = 20;
@@ -46,7 +44,7 @@ public static synchronized Volley getInstance(ContextSupplier ctx) {
 	return Volley.instance;
 }
 
-public void queue(Request<JSONObject> req) {
+public void queue(Request<?> req) {
 	getRequestQueue().add(req);
 }
 

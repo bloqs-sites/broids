@@ -4,20 +4,24 @@ import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Iterator;
 
-import jvmdbhelper.model.Model;
-
-public class JSONArrayIterator<T extends Model> implements Iterator<T>, Iterable<T> {
+public class JSONArrayIterator<T> implements Iterator<T>, Iterable<T> {
 private final JSONArray array;
-private final ModelManager<T> manager;
+private final JSONArrayIterator.Instanciator<T> init;
 private int counter;
 
-public JSONArrayIterator(JSONArray array, ModelManager<T> manager) {
+public JSONArrayIterator(JSONArray array, JSONArrayIterator.Instanciator<T> init) {
 	this.array = array;
-	this.manager = manager;
+	this.init = init;
 	this.counter = 0;
+}
+
+public interface Instanciator<T> {
+	@NonNull T init();
+	@NonNull T fromJson(JSONObject json, @NonNull T o);
 }
 
 @Override
@@ -28,7 +32,7 @@ public boolean hasNext() {
 @Override
 public T next() {
 	try {
-		return this.manager.fromJson(this.array.getJSONObject(this.counter++), this.manager.init());
+		return this.init.fromJson(this.array.getJSONObject(this.counter++), this.init.init());
 	} catch (JSONException e) {
 		throw new RuntimeException(e);
 	}
@@ -37,6 +41,6 @@ public T next() {
 @NonNull
 @Override
 public Iterator<T> iterator() {
-	return new JSONArrayIterator<>(this.array, this.manager);
+	return new JSONArrayIterator<>(this.array, this.init);
 }
 }
