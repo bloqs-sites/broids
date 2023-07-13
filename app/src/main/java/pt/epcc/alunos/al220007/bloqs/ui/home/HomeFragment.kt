@@ -48,12 +48,7 @@ class HomeFragment : Fragment(), Response.Listener<JSONArray>, Response.ErrorLis
 
         val url = URL("https://bloqsenjin-ten.vercel.app/api/rest/bloq")
 
-<<<<<<< HEAD
-        val req = JsonArrayRequest(url.toString(), this, this)
-        //req.headers["Origin"] = "http://fsf.org/"
-=======
         val req = Request(url.toString(), this, this)
->>>>>>> 73985e4 (start project client)
 
         Volley.getInstance { context }.queue(req)
 
