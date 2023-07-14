@@ -14,12 +14,9 @@ import com.android.volley.Response
 import com.android.volley.VolleyError
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import org.json.JSONArray
-import org.json.JSONObject
-import pt.epcc.alunos.al220007.bloqs.core.JSONArrayIterator
 import pt.epcc.alunos.al220007.bloqs.core.async.Volley
 import pt.epcc.alunos.al220007.bloqs.databinding.FragmentHomeBinding
 import java.net.URL
-import kotlin.random.Random
 
 class HomeFragment : Fragment(), Response.Listener<JSONArray>, Response.ErrorListener {
 
@@ -62,20 +59,7 @@ class HomeFragment : Fragment(), Response.Listener<JSONArray>, Response.ErrorLis
     }
 
     override fun onResponse(response: JSONArray?) {
-        recyclerView.adapter = Adapter(
-            context,
-            JSONArrayIterator(response, object : JSONArrayIterator.Instanciator<Bloq> {
-                override fun init(): Bloq = Bloq()
-
-                override fun fromJson(json: JSONObject?, o: Bloq): Bloq {
-                    o.name = json?.getString("name") ?: ""
-                    o.id = json?.getInt("id") ?: -1
-                    o.description = json?.getString("description") ?: ""
-                    o.image = URL(json?.getString("image") ?: "https://picsum.photos/200?random=${Random.nextInt()}")
-                    return o
-                }
-            }).toList()
-        )
+        recyclerView.adapter = Adapter(context, BloqsIterator(response).toList())
         progress.visibility = View.GONE
     }
 

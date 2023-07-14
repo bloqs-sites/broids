@@ -9,7 +9,4 @@ class Request(
     listener: Response.Listener<JSONArray>?,
     errorListener: Response.ErrorListener?
 ) : JsonArrayRequest(url, listener, errorListener) {
-    override fun getHeaders(): MutableMap<String, String> {
-        return super.getHeaders()
-    }
 }
